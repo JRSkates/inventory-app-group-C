@@ -6,6 +6,7 @@ class Item extends Model {}
 Item.init(
   {
     // Define your columns here
+    // test
   },
   {
     sequelize,
