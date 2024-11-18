@@ -26,7 +26,7 @@ function App() {
   }, []);
 
   return (
-    <div>
+    <>
       <h1>Inventory App</h1>
       {!selectedItem ? (
         <ItemList items={items} onViewDetails={fetchOneItem} />
@@ -37,7 +37,7 @@ function App() {
           onBack={() => setSelectedItem(null)}
         />
       )}
-    </div>
+    </>
   );
 }
 
