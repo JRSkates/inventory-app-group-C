@@ -4,7 +4,7 @@ const ItemForm = ({ onFormSubmit, onBack }) => {
     const [formData, setFormData] = useState({
         name: '',
         description: '',
-        price: null,
+        price: 0,
         category: '',
         image: ''
     });
@@ -35,7 +35,7 @@ const ItemForm = ({ onFormSubmit, onBack }) => {
             <br />
             <label type="category">
                 Category:
-                <input type="text" value={formData.category} onChange={(e) => setFormData({...formData, category: e.target.value })} />
+                <input type="text" value={formData.category} onChange={(e) => setFormData({...formData, category: e.target.value })} required/>
             </label>
             <br />
             <label type="image">
