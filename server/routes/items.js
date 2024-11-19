@@ -28,11 +28,11 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    console.log("body", req.body)
+    
 
     const {name, description, price, category, image} = req.body;
 
-    if (!name || !description || !price || !category || !image) {
+    if (!name || !description || !price || !category) {
       return res.status(400).json({ error: "All fields required" });
     }
 
@@ -43,7 +43,7 @@ router.post("/", async (req, res) => {
       category,
       image
     });
-    console.log("new item created", newItem)
+    
     res.status(201).json(newItem);
 
   } catch (error) {
@@ -68,5 +68,31 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ error: error.message })
   }
 })
+
+router.put("/:id", async (req, res) => {
+  try {
+    
+    const {name, description, price, category, image} = req.body;
+
+    const item = await Item.findByPk(req.params.id);
+    console.log("item", item)
+
+    if (!item) {
+      return res.status(404).json({error: "Item not found."})
+    }
+    
+
+    await item.update({
+      name: name || item.name,
+      description: description || item.description,
+      price: price || item.price,
+      category: category || item.category,
+      image: image || item.image
+    });
+    res.status(200).json(item);
+  } catch (error) {
+    res.status(500).json({ error: error.message })
+  }
+});
 
 module.exports = router;
