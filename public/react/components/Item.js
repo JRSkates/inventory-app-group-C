@@ -30,4 +30,3 @@ const Item = ({ item, detailed, onViewDetails, onBack, onDelete }) => {
 };
 
 export default Item;
-
