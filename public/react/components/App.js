@@ -52,7 +52,10 @@ function App() {
     <>
       <h1>Inventory App</h1>
       {isAddingItem ? (
-        <ItemForm onFormSubmit={handleFormSubmit}/> 
+        <ItemForm 
+          onFormSubmit={handleFormSubmit}
+          onBack={() => setIsAddingItem(false)}  // Close form when back button is clicked
+        /> 
       ) : !selectedItem ? (
         <>
           <button onClick={() => setIsAddingItem(true)}>Add New Item</button>
