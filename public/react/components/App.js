@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import ItemList from "./ItemList";
+import ItemForm from "./ItemForm";
 
 // Prepend the API URL to any fetch calls.
 import apiURL from "../api";
@@ -8,6 +9,7 @@ import apiURL from "../api";
 function App() {
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [isAddingItem, setIsAddingItem] = useState(false);
 
   async function fetchItems() {
     const response = await fetch(`${apiURL}/items`)
@@ -28,8 +30,13 @@ function App() {
   return (
     <>
       <h1>Inventory App</h1>
-      {!selectedItem ? (
-        <ItemList items={items} onViewDetails={fetchOneItem} />
+      {isAddingItem ? (
+        <ItemForm /> 
+      ) : !selectedItem ? (
+        <>
+          <button onClick={() => setIsAddingItem(true)}>Add New Item</button>
+          <ItemList items={items} onViewDetails={fetchOneItem} />
+        </>
       ) : (
         <Item
           item={selectedItem}
