@@ -48,6 +48,27 @@ function App() {
     }
   };
 
+  const handleDelete = async (itemId) => {
+    try {
+      const confirmDelete = window.confirm("Are you sure you wish to delete this item?")
+
+      if (confirmDelete) {
+        const response = await fetch(`${apiURL}/items/${itemId}`, {
+          method: "DELETE",
+        });
+
+        if (response.ok) {
+          await fetchItems(); // Re-fetch all articles after successful deletion
+          setSelectedItem(null); // Switch back to list view
+        } else {
+          console.log('Failed to delete article');
+        }
+      }
+    } catch (err) {
+      console.log('Error deleting article:', err);
+    }
+  }
+
   return (
     <>
       <h1>Inventory App</h1>
@@ -66,6 +87,7 @@ function App() {
           item={selectedItem}
           detailed={true}
           onBack={() => setSelectedItem(null)}
+          onDelete={handleDelete}
         />
       )}
     </>
