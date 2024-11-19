@@ -28,9 +28,44 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    
-  } catch (err) {
+    console.log("body", req.body)
 
+    const {name, description, price, category, image} = req.body;
+
+    if (!name || !description || !price || !category || !image) {
+      return res.status(400).json({ error: "All fields required" });
+    }
+
+    const newItem = await Item.create({
+      name,
+      description,
+      price,
+      category,
+      image
+    });
+    console.log("new item created", newItem)
+    res.status(201).json(newItem);
+
+  } catch (error) {
+    res.status(500).json({error: error.message})
+  }
+})
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const item = await Item.findByPk(id);
+
+    if (!item) {
+      return res.status(404).json({ error: "Item not found" });
+    }
+
+    await item.destroy();
+
+    res.status(200).json({message: `Item with id ${id} has been deleted.`})
+  } catch (error) {
+    res.status(500).json({ error: error.message })
   }
 })
 
