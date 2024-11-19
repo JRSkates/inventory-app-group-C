@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Item from "./Item";
 import ItemList from "./ItemList";
+import ItemForm from "./ItemForm";
 
 // Prepend the API URL to any fetch calls.
 import apiURL from "../api";
@@ -8,6 +9,7 @@ import apiURL from "../api";
 function App() {
   const [items, setItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
+  const [isAddingItem, setIsAddingItem] = useState(false);
 
   async function fetchItems() {
     const response = await fetch(`${apiURL}/items`)
@@ -25,11 +27,40 @@ function App() {
     fetchItems();
   }, []);
 
+  const handleFormSubmit = async (itemData) => {
+    try {
+      const response = await fetch(`${apiURL}/items`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(itemData),
+      });
+      
+      if (response.ok) {
+        await fetchItems(); // Re-fetch all articles after successful submission
+        setIsAddingItem(false); // Switch back to list view
+      } else {
+        console.log('Failed to submit article');
+      }
+    } catch (err) {
+      console.log('Error submitting article:', err);
+    }
+  };
+
   return (
     <>
       <h1>Inventory App</h1>
-      {!selectedItem ? (
-        <ItemList items={items} onViewDetails={fetchOneItem} />
+      {isAddingItem ? (
+        <ItemForm 
+          onFormSubmit={handleFormSubmit}
+          onBack={() => setIsAddingItem(false)}  // Close form when back button is clicked
+        /> 
+      ) : !selectedItem ? (
+        <>
+          <button onClick={() => setIsAddingItem(true)}>Add New Item</button>
+          <ItemList items={items} onViewDetails={fetchOneItem} />
+        </>
       ) : (
         <Item
           item={selectedItem}

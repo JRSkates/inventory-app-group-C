@@ -29,7 +29,6 @@ router.get("/:id", async (req, res) => {
 router.post("/", async (req, res) => {
   try {
     
-
     const {name, description, price, category, image} = req.body;
 
     if (!name || !description || !price || !category) {
