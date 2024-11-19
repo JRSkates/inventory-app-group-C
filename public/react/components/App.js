@@ -27,11 +27,32 @@ function App() {
     fetchItems();
   }, []);
 
+  const handleFormSubmit = async (itemData) => {
+    try {
+      const response = await fetch(`${apiURL}/items`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(itemData),
+      });
+      
+      if (response.ok) {
+        await fetchItems(); // Re-fetch all articles after successful submission
+        setIsAddingItem(false); // Switch back to list view
+      } else {
+        console.log('Failed to submit article');
+      }
+    } catch (err) {
+      console.log('Error submitting article:', err);
+    }
+  };
+
   return (
     <>
       <h1>Inventory App</h1>
       {isAddingItem ? (
-        <ItemForm /> 
+        <ItemForm onFormSubmit={handleFormSubmit}/> 
       ) : !selectedItem ? (
         <>
           <button onClick={() => setIsAddingItem(true)}>Add New Item</button>

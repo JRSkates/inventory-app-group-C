@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ItemForm = ({}) => {
+const ItemForm = ({ onFormSubmit }) => {
     return (
         <form>
             <h3>TEST</h3>
