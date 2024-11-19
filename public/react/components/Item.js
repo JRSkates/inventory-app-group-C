@@ -1,6 +1,6 @@
 import React from "react";
 
-const Item = ({ item, detailed, onViewDetails, onBack }) => {
+const Item = ({ item, detailed, onViewDetails, onBack, onDelete }) => {
   if (detailed) {
     // Show detailed view
     return (
@@ -11,6 +11,7 @@ const Item = ({ item, detailed, onViewDetails, onBack }) => {
         <p>Price: £{item.price}</p>
         <p>Category: {item.category}</p>
         <button onClick={onBack}>Back to List</button>
+        <button onClick={() => onDelete(item.id)}>Delete Item</button>
       </div>
     );
   }
