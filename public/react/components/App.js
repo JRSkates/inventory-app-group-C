@@ -27,6 +27,28 @@ function App() {
     fetchItems();
   }, []);
 
+  const handleUpdate = async (updatedItem) => {
+    try {
+      const response = await fetch(`${apiURL}/items/${updatedItem.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(updatedItem),
+      });
+
+      if (response.ok) {
+        alert("Item successfully updated!");
+        fetchItems(); // Refresh the items list
+        setSelectedItem(updatedItem); // Keep the updated item in view
+      } else {
+        console.error("Failed to update item.");
+      }
+    } catch (error) {
+      console.error("Error updating item:", error);
+    }
+  };
+
   const handleFormSubmit = async (itemData) => {
     try {
       const response = await fetch(`${apiURL}/items`, {
@@ -88,6 +110,7 @@ function App() {
           detailed={true}
           onBack={() => setSelectedItem(null)}
           onDelete={handleDelete}
+          onUpdate={handleUpdate}
         />
       )}
     </>
