@@ -16,7 +16,7 @@ beforeEach(() => {
   );
 });
 
-beforeEach(() => {
+afterEach(() => {
   jest.restoreAllMocks();
 });
 
@@ -39,6 +39,105 @@ test("renders the list of items", async () => {
   expect(screen.getByText("Item 1")).toBeInTheDocument();
   expect(screen.getByText("Item 2")).toBeInTheDocument();
 });
+
+
+test("view more details on an item", async () => {
+  await act(async () => {
+    render(<App />);
+  });
+
+  expect(screen.getByText("Item 1")).toBeInTheDocument();
+  expect(screen.getByText("Item 2")).toBeInTheDocument();
+
+  // Mock the fetch call for fetching a single item's details
+  global.fetch.mockImplementationOnce(() =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve({
+          id: 1,
+          name: "Item 1",
+          description: "Description 1",
+          price: 10,
+          category: "Category 1",
+          image: "item1.jpg",
+        }),
+    })
+  );
+
+  // Click the "View Details" button for the first item
+  const viewDetailsButtons = screen.getAllByText("View Details");
+  await act(async () => {
+    fireEvent.click(viewDetailsButtons[0]);
+  });
+
+  // Verify the detailed view is displayed
+  expect(await screen.findByText("Back to List")).toBeInTheDocument();
+  expect(screen.getByText("Item 1")).toBeInTheDocument();
+});
+
+test("delete an item", async () => {
+  await act(async () => {
+    render(<App />);
+  });
+
+  expect(screen.getByText("Item 1")).toBeInTheDocument();
+  expect(screen.getByText("Item 2")).toBeInTheDocument();
+
+  // Mock the fetch call for fetching a single item's details
+  global.fetch.mockImplementationOnce(() =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve({
+          id: 1,
+          name: "Item 1",
+          description: "Description 1",
+          price: 10,
+          category: "Category 1",
+          image: "item1.jpg",
+        }),
+    })
+  );
+
+  const viewDetailsButtons = screen.getAllByText("View Details");
+  await act(async () => {
+    fireEvent.click(viewDetailsButtons[0]);
+  });
+
+  // Verify the detailed view is displayed
+  expect(await screen.findByText("Back to List")).toBeInTheDocument();
+  expect(screen.getByText("Item 1")).toBeInTheDocument();
+
+  // Mock `window.confirm` to simulate user clicking "OK"
+  window.confirm = jest.fn(() => true);
+
+  // Mock the fetch call for deleting the item
+  global.fetch.mockImplementationOnce(() =>
+    Promise.resolve({ ok: true }) // Simulate a successful delete response
+  );
+
+  // Mock the updated fetch call to return the remaining items after deletion
+  global.fetch.mockImplementationOnce(() =>
+    Promise.resolve({
+      json: () =>
+        Promise.resolve([
+          { id: 2, name: "Item 2", description: "Description 2", price: 20, category: "Category 2", image: "item2.jpg" },
+        ]),
+    })
+  );
+
+  // Click the "Delete Item" button
+  const deleteButton = screen.getByText("Delete Item");
+  await act(async () => {
+    fireEvent.click(deleteButton);
+  });
+
+
+  // Verify the item list is updated and the deleted item no longer exists
+  expect(screen.queryByText("Item 1")).not.toBeInTheDocument();
+  expect(screen.getByText("Item 2")).toBeInTheDocument();
+});
+
+
 
 
 test("adds a new item and displays it in the list", async () => {
