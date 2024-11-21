@@ -72,8 +72,8 @@ const Item = ({ item, detailed, onViewDetails, onBack, onDelete, onUpdate }) => 
               />
             </label >
             <br />
-            <button type="submit" className="form-button save-btn">Save</button>
-            <button type="button" className="form-button" onClick={() => setIsEditing(false)}>Cancel</button>
+            <button type="submit" className="form-button">Save</button>
+            <button type="button" className="form-button form-cancel-button" onClick={() => setIsEditing(false)}>Cancel</button>
           </form>
         ) : (
           <>
