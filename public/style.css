@@ -226,6 +226,128 @@ button:focus {
 }
 
 
+/* Single Item Detail Styling */
+.item-detail-title {
+  font-size: 2rem;
+  color: #34495e;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.item-detail-image {
+  display: block;
+  max-width: 250px; /* Keeps the image a reasonable size */
+  margin: 0 auto 1.5rem; /* Center the image and add spacing */
+  transition: transform 0.3s ease-in-out;
+}
+
+.item-detail-image:hover {
+  transform: scale(1.05);
+}
+
+.item-detail-description {
+  font-size: 1.125rem;
+  color: #7f8c8d;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.item-detail-price,
+.item-detail-category {
+  font-size: 1.125rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.item-detail-price span,
+.item-detail-category span {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Updated Button Styling */
+.item-detail-buttons {
+  display: flex;
+  justify-content: space-between; /* Spread buttons evenly */
+  gap: 1rem; /* Add spacing between buttons */
+  margin-top: 1.5rem;
+  padding: 0; /* Remove any unwanted padding */
+}
+
+.item-detail-button {
+  flex: 1; /* Allow buttons to grow equally */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center; /* Center text in buttons */
+}
+
+.item-detail-button:hover {
+  transform: scale(1.05);
+}
+
+.item-detail-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.5);
+}
+
+.item-detail-button {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.item-detail-button:hover {
+  background-color: #2980b9;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.edit-button {
+  background-color: #16a085;
+}
+
+.edit-button:hover {
+  background-color: #1abc9c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .item-detail-title {
+    font-size: 1.75rem;
+  }
+
+  .item-detail-description,
+  .item-detail-price,
+  .item-detail-category {
+    font-size: 1rem;
+  }
+
+  .item-detail-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.5rem; /* Reduce spacing between buttons */
+    justify-content: center; /* Center-align buttons */
+  }
+
+  .item-detail-button {
+    width: 100%; /* Make buttons full-width on smaller screens */
+    margin: 0; /* Remove margins */
+  }
+}
+
+
 /* General Responsiveness */
 @media (max-width: 768px) {
   ul {
