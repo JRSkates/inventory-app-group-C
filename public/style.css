@@ -29,6 +29,7 @@ h1 {
   letter-spacing: 3px;
   background: linear-gradient(to right, #3498db, #8e44ad);
   -webkit-background-clip: text;
+  background-clip: text; /* Standard property for compatibility */
   -webkit-text-fill-color: transparent;
   animation: gradientText 3s infinite alternate;
 }
