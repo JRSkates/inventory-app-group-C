@@ -3,19 +3,18 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-
 }
+
 #root {
   padding: 2rem;
 }
-
 
 body {
   width: 90%;
   max-width: 200em;
   margin: 1em auto;
   line-height: 1.5;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", 
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background-color: #f8f9fa;
   color: #333;
@@ -54,49 +53,66 @@ h1 {
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
 }
 
-
 /* Item List Styling */
 ul {
   list-style: none;
+  display: grid;
+  grid-template-columns: 1fr; /* Single-column layout by default */
+  gap: 1.5rem;
   padding: 0;
   margin: 0;
 }
 
+@media (min-width: 800px) {
+  ul {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Dynamic grid for wider screens */
+  }
+}
+
 li {
   display: flex;
-  flex-direction: column; /* Stack the content vertically */
-  align-items: center; /* Center align content */
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   background-color: #ffffff;
   border: 1px solid #e3e6e9;
   border-radius: 10px;
-  padding: 1.5rem;
+  padding: 2rem;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem; /* Spacing between list items */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+li:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 li img {
-  max-width: 100%;
+  max-width: 80%;
   border-radius: 10px;
-  margin-bottom: 1rem; /* Add space below the image */
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+li img:hover {
+  transform: scale(1.05);
 }
 
 li h3 {
-  margin-bottom: 0.5rem; /* Add space below the title */
+  margin-bottom: 0.5rem;
   color: #2c3e50;
   font-size: 1.25rem;
 }
 
 li p {
-  margin: 0.5rem 0; /* Add spacing above and below paragraphs */
+  margin: 0.5rem 0;
   color: #555;
   font-size: 1rem;
 }
 
 li button {
-  margin-top: 1rem; /* Add space above the button */
+  margin-top: 1rem;
   background-color: #3498db;
   color: #ffffff;
   border: none;
@@ -116,7 +132,6 @@ li button:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
 }
-
 
 /* Item Details Styling */
 div {
@@ -173,7 +188,7 @@ button:focus {
 /* General Responsiveness */
 @media (max-width: 768px) {
   ul {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: 1fr;
   }
 
   h1 {
