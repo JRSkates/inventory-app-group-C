@@ -101,7 +101,7 @@ function App() {
         /> 
       ) : !selectedItem ? (
         <>
-          <button onClick={() => setIsAddingItem(true)}>Add New Item</button>
+          <button id="add-item-btn" onClick={() => setIsAddingItem(true)}>Add New Item</button>
           <ItemList items={items} onViewDetails={fetchOneItem} />
         </>
       ) : (
