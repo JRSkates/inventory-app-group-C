@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import './ItemForm.css'; 
 const Item = ({ item, detailed, onViewDetails, onBack, onDelete, onUpdate }) => {
   
   const [isEditing, setIsEditing] = useState(false);
@@ -17,28 +17,30 @@ const Item = ({ item, detailed, onViewDetails, onBack, onDelete, onUpdate }) => 
     return (
       <div>
         {isEditing ? (
-          <form onSubmit={handleFormSubmit} >
+          <form onSubmit={handleFormSubmit} className="form-container">
             <h2>Edit Item</h2>
-            <label>
+            <label className="form-label">
               Name:
               <input
                 type="text"
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
+                className="form-input"
               />
             </label>
             <br />
-            <label>
+            <label className="form-label">
               Description:
               <textarea
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 required
+                className="form-input form-textarea"
               />
             </label>
             <br />
-            <label>
+            <label className="form-label">
               Price:
               <input
                 type="number"
@@ -46,29 +48,32 @@ const Item = ({ item, detailed, onViewDetails, onBack, onDelete, onUpdate }) => 
                 onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
                 step="0.01"
                 required
+                className="form-input"
               />
             </label>
             <br />
-            <label>
+            <label className="form-label">
               Category:
               <input
                 type="text"
                 value={formData.category}
                 onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                className="form-input"
               />
-            </label>
+            </label> 
             <br />
-            <label>
+            <label className="form-label">
               Image URL:
               <input
                 type="url"
                 value={formData.image}
                 onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                className="form-input"
               />
-            </label>
+            </label >
             <br />
-            <button type="submit">Save</button>
-            <button type="button" onClick={() => setIsEditing(false)}>Cancel</button>
+            <button type="submit" className="form-button">Save</button>
+            <button type="button" className="form-button form-cancel-button" onClick={() => setIsEditing(false)}>Cancel</button>
           </form>
         ) : (
           <>
@@ -77,9 +82,9 @@ const Item = ({ item, detailed, onViewDetails, onBack, onDelete, onUpdate }) => 
           <p>{item.description}</p>
           <p>Price: £{item.price}</p>
           <p>Category: {item.category}</p>
-          <button onClick={onBack}>Back to List</button>
-          <button onClick={() => onDelete(item.id)}>Delete Item</button>
-          <button onClick={() => setIsEditing(true)}>Edit Item</button>
+          <button onClick={onBack} className="form-button">Back to List</button>
+          <button onClick={() => onDelete(item.id)} className="form-button">Delete Item</button>
+          <button onClick={() => setIsEditing(true)} className="form-button">Edit Item</button>
           </>
       )}
       </div>
