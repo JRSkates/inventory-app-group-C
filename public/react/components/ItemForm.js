@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './ItemForm.css'; // Import the CSS file
 
 const ItemForm = ({ onFormSubmit, onBack }) => {
     const [formData, setFormData] = useState({
@@ -15,38 +16,67 @@ const ItemForm = ({ onFormSubmit, onBack }) => {
     };
 
     return (
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit} className="form-container">
             <h3>Create New Item</h3>
-            <br />
-            <label type="name">
+
+            <label className="form-label">
                 Name:
-                <input type="text" value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value })} required />
+                <input
+                    type="text"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    required
+                    className="form-input"
+                />
             </label>
-            <br />
-            <label type="description">
+
+            <label className="form-label">
                 Description:
-                <textarea value={formData.description} onChange={(e) => setFormData({...formData, description: e.target.value })} required />
+                <textarea
+                    value={formData.description}
+                    onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                    required
+                    className="form-input form-textarea"
+                    />
             </label>
-            <br />
-            <label type="number">
+
+            <label className="form-label">
                 Price:
-                <input type="number" value={formData.price} onChange={(e) => setFormData({...formData, price: parseFloat(e.target.value) })} step="0.01" required />
+                <input
+                    type="number"
+                    value={formData.price}
+                    onChange={(e) => setFormData({ ...formData, price: parseFloat(e.target.value) })}
+                    step="0.01"
+                    required
+                    className="form-input"
+                />
             </label>
-            <br />
-            <label type="category">
+
+            <label className="form-label">
                 Category:
-                <input type="text" value={formData.category} onChange={(e) => setFormData({...formData, category: e.target.value })} required/>
+                <input
+                    type="text"
+                    value={formData.category}
+                    onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                    required
+                    className="form-input"
+                />
             </label>
-            <br />
-            <label type="image">
+
+            <label className="form-label">
                 Image URL:
-                <input type="url" value={formData.image} onChange={(e) => setFormData({...formData, image: e.target.value })} />
+                <input
+                    type="url"
+                    value={formData.image}
+                    onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                    className="form-input"
+                />
             </label>
-            <button type="submit">Submit</button>
-            <br />
-            <button type="button" onClick={onBack}>Back</button>
+
+            <button type="submit" className="form-button">Submit</button>
+            <button type="button" onClick={onBack} className="form-button form-cancel-button">Back</button>
         </form>
-    )
-}
+    );
+};
 
 export default ItemForm;
