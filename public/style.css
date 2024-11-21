@@ -225,6 +225,7 @@ button:focus {
   box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.5);
 }
 
+
 /* General Responsiveness */
 @media (max-width: 768px) {
   ul {
