@@ -1,61 +1,111 @@
 .form-container {
-    display: flex;
-    flex-direction: column;
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.form-container h3 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  color: #34495e;
+  font-weight: 700;
+}
+
+.form-label {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  margin-bottom: 1.5rem;
+  background: #f9f9f9;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+  outline: none;
+}
+
+.form-textarea {
+  height: 120px;
+  resize: none;
+}
+
+.form-button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background: #3498db;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-button:hover {
+  background: #2980b9;
+  transform: scale(1.05);
+  box-shadow: 0 4px 10px rgba(41, 128, 185, 0.3);
+}
+
+.form-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+}
+
+.form-cancel-button {
+  background: #e74c3c;
+  margin-top: 1rem;
+}
+
+.form-cancel-button:hover {
+  background: #c0392b;
+  transform: scale(1.05);
+}
+
+.form-cancel-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.5);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .form-container {
+    padding: 1.5rem;
   }
-  
+
   .form-container h3 {
-    text-align: center;
-    margin-bottom: 20px;
+    font-size: 1.5rem;
   }
-  
-  .form-label {
-    margin-bottom: 10px;
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .form-input {
-    padding: 8px;
-    font-size: 14px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    margin-bottom: 15px;
-  }
-  
+
+  .form-input,
   .form-textarea {
-    height: 100px;
+    font-size: 0.9rem;
+    padding: 0.6rem;
   }
-  
+
   .form-button {
-    padding: 10px 15px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-bottom: 50px;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
   }
-  
-  .form-button:hover {
-    background-color: #0056b3;
-  }
-  
-  .form-cancel-button {
-    background-color: #6c757d;
-    margin-top: 10px;
-  }
-  
-  .form-cancel-button:hover {
-    background-color: #5a6268;
-  }
-  
- 
+}

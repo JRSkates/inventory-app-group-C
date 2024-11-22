@@ -3,185 +3,371 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-
 }
+
 #root {
   padding: 2rem;
 }
 
-
 body {
   width: 90%;
-  max-width: 200em;
-  margin: 1em auto;
-  line-height: 1.5;
-  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", 
-    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: #f8f9fa;
+  max-width: 1200px;
+  margin: 2rem auto;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #f8f9fa, #eef2f3);
   color: #333;
+  line-height: 1.6;
 }
 
+/* Header */
 h1 {
-  font-size: 2.5rem;
-  color: #2c3e50;
-  margin-bottom: 1.5rem;
+  font-size: 3rem;
+  color: #34495e;
+  margin-bottom: 2rem;
   text-align: center;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
+  background: linear-gradient(to right, #3498db, #8e44ad);
+  -webkit-background-clip: text;
+  background-clip: text; /* Standard property for compatibility */
+  -webkit-text-fill-color: transparent;
+  animation: gradientText 3s infinite alternate;
 }
 
+@keyframes gradientText {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+/* Add Item Button */
 #add-item-btn {
-  display: block; /* Ensures it behaves as a block-level element */
-  margin: 0 auto; /* Centers it horizontally */
-  margin-bottom: 1.5rem; /* Add spacing below */
+  display: block;
+  margin: 0 auto 2rem;
+  padding: 1rem 2rem;
   background-color: #3498db;
-  color: #ffffff;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 600;
   border: none;
-  border-radius: 5px;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(52, 152, 219, 0.3);
+  transition: all 0.3s ease-in-out;
 }
 
 #add-item-btn:hover {
   background-color: #2980b9;
   transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(41, 128, 185, 0.5);
 }
 
 #add-item-btn:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.7);
 }
-
 
 /* Item List Styling */
 ul {
   list-style: none;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr); /* Default: Single-column layout */
+  gap: 2rem;
   padding: 0;
-  margin: 0;
+}
+
+@media (min-width: 1200px) {
+  ul {
+    grid-template-columns: repeat(2, 1fr); /* Max: Two-column layout */
+  }
 }
 
 li {
   display: flex;
-  flex-direction: column; /* Stack the content vertically */
-  align-items: center; /* Center align content */
-  justify-content: space-between;
-  background-color: #ffffff;
-  border: 1px solid #e3e6e9;
-  border-radius: 10px;
+  flex-direction: column;
+  align-items: center;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
   padding: 1.5rem;
   text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem; /* Spacing between list items */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+li:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
 li img {
-  max-width: 100%;
-  border-radius: 10px;
-  margin-bottom: 1rem; /* Add space below the image */
+  max-width: 90%;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+li img:hover {
+  transform: scale(1.1);
+  filter: brightness(1.1);
 }
 
 li h3 {
-  margin-bottom: 0.5rem; /* Add space below the title */
-  color: #2c3e50;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: #34495e;
+  text-transform: capitalize;
+  font-weight: 600;
 }
 
 li p {
-  margin: 0.5rem 0; /* Add spacing above and below paragraphs */
-  color: #555;
+  margin: 0.5rem 0;
+  color: #7f8c8d;
   font-size: 1rem;
+  font-weight: 400;
 }
 
 li button {
-  margin-top: 1rem; /* Add space above the button */
-  background-color: #3498db;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
+  margin-top: 1rem;
   padding: 0.75rem 1.5rem;
+  background-color: #e67e22;
+  color: #fff;
   font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: all 0.3s ease-in-out;
 }
 
 li button:hover {
-  background-color: #2980b9;
-  transform: scale(1.05);
+  background-color: #d35400;
+  transform: scale(1.1);
 }
 
 li button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+  box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.5);
 }
-
 
 /* Item Details Styling */
 div {
   padding: 2rem;
-  background-color: #ffffff;
-  border: 1px solid #e3e6e9;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 div img {
-  margin-bottom: 1rem;
-  border-radius: 10px;
+  max-width: 100%;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  transition: transform 0.3s ease-in-out;
+}
+
+div img:hover {
+  transform: scale(1.1);
 }
 
 h2 {
   font-size: 2rem;
-  color: #34495e;
+  color: #2c3e50;
   margin-bottom: 1rem;
+  font-weight: 700;
 }
 
 p {
-  margin-bottom: 0.5rem;
-  color: #555;
+  margin-bottom: 0.75rem;
   font-size: 1rem;
+  color: #7f8c8d;
 }
 
 p:last-child {
-  margin-bottom: 1.5rem;
+  margin-bottom: 2rem;
 }
 
 button {
-  background-color: #3498db;
-  color: #ffffff;
-  border: none;
-  border-radius: 5px;
   padding: 0.75rem 1.5rem;
+  background-color: #16a085;
+  color: #fff;
   font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-left: 10px;
+  margin: 0.5rem;
 }
 
 button:hover {
-  background-color: #2980b9;
-  transform: scale(1.05);
+  background-color: #1abc9c;
+  transform: scale(1.1);
 }
 
 button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.5);
+  box-shadow: 0 0 0 3px rgba(26, 188, 156, 0.5);
 }
+
+
+/* Single Item Detail Styling */
+.item-detail-title {
+  font-size: 2rem;
+  color: #34495e;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.item-detail-image {
+  display: block;
+  max-width: 250px; /* Keeps the image a reasonable size */
+  margin: 0 auto 1.5rem; /* Center the image and add spacing */
+  transition: transform 0.3s ease-in-out;
+}
+
+.item-detail-image:hover {
+  transform: scale(1.05);
+}
+
+.item-detail-description {
+  font-size: 1.125rem;
+  color: #7f8c8d;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.item-detail-price,
+.item-detail-category {
+  font-size: 1.125rem;
+  color: #555;
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.item-detail-price span,
+.item-detail-category span {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+/* Updated Button Styling */
+.item-detail-buttons {
+  display: flex;
+  justify-content: space-between; /* Spread buttons evenly */
+  gap: 1rem; /* Add spacing between buttons */
+  margin-top: 1.5rem;
+  padding: 0; /* Remove any unwanted padding */
+}
+
+.item-detail-button {
+  flex: 1; /* Allow buttons to grow equally */
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center; /* Center text in buttons */
+}
+
+.item-detail-button:hover {
+  transform: scale(1.05);
+}
+
+.item-detail-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.5);
+}
+
+.item-detail-button {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.item-detail-button:hover {
+  background-color: #2980b9;
+}
+
+.delete-button {
+  background-color: #e74c3c;
+}
+
+.delete-button:hover {
+  background-color: #c0392b;
+}
+
+.edit-button {
+  background-color: #16a085;
+}
+
+.edit-button:hover {
+  background-color: #1abc9c;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .item-detail-title {
+    font-size: 1.75rem;
+  }
+
+  .item-detail-description,
+  .item-detail-price,
+  .item-detail-category {
+    font-size: 1rem;
+  }
+
+  .item-detail-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 0.5rem; /* Reduce spacing between buttons */
+    justify-content: center; /* Center-align buttons */
+  }
+
+  .item-detail-button {
+    width: 100%; /* Make buttons full-width on smaller screens */
+    margin: 0; /* Remove margins */
+  }
+}
+
 
 /* General Responsiveness */
 @media (max-width: 768px) {
   ul {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: 1fr; /* Single-column layout */
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
 
   h2 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+  }
+
+  li {
+    padding: 1rem;
+  }
+
+  li h3 {
+    font-size: 1.25rem;
   }
 
   button {
