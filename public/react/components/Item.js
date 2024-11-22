@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import './ItemForm.css'; 
+import './itemForm.css'; 
 const Item = ({ item, detailed, onViewDetails, onBack, onDelete, onUpdate }) => {
   
   const [isEditing, setIsEditing] = useState(false);
