@@ -80,8 +80,8 @@ const Item = ({ item, detailed, onViewDetails, onBack, onDelete, onUpdate }) => 
             <h2 className="item-detail-title">{item.name}</h2>
             <img className="item-detail-image" src={item.image} alt={item.name} />
             <p className="item-detail-description">{item.description}</p>
-            <p className="item-detail-price">Price: <span>£{item.price}</span></p>
-            <p className="item-detail-category">Category: <span>{item.category}</span></p>
+            <p className="item-detail-price">Price: £{item.price}</p>
+            <p className="item-detail-category">Category: {item.category}</p>
             <div className="item-detail-buttons">
               <button onClick={onBack} className="item-detail-button">Back to List</button>
               <button onClick={() => onDelete(item.id)} className="item-detail-button delete-button">Delete Item</button>

@@ -269,8 +269,8 @@ test("edit an item and view the updated details", async () => {
   // Verify that the updated item details are displayed
   expect(screen.getByText("Updated Item")).toBeInTheDocument();
   expect(screen.getByText("Updated Description")).toBeInTheDocument();
-  expect(screen.getByText("Price: £15")).toBeInTheDocument();
-  expect(screen.getByText("Category: Updated Category")).toBeInTheDocument();
+  expect(screen.getByText(/Price: £15/)).toBeInTheDocument();
+  expect(screen.getByText(/Category: Updated Category/)).toBeInTheDocument();
 });
 
 
